@@ -6,16 +6,16 @@ $book_ID = $_GET['book_id'];
 }else{
   $book_ID= "0";
 }
-if ( isset($_GET['sub_cat_id'])){
-$sub_cat_id = $_GET['sub_cat_id'];
+if ( isset($_GET['cat_book_id'])){
+$sub_cat_ID = $_GET['cat_book_id'];
 }else{
-  $sub_cat_id = "0";
+  $sub_cat_ID = "0";
 
 }
 if ( isset($_GET['cat_id'])){
-$cat_id = $_GET['cat_id'];
+$cat_ID = $_GET['cat_id'];
 }else {
-  $cat_id = "0";
+  $cat_ID = "0";
 }
  ?>
 <!DOCTYPE html>
@@ -247,7 +247,7 @@ THE LISTS ARE STARTING FROM HERE DOWN OF HERER ALL 3 LISTS
 
 
 
-            echo "<a href='http://localhost/library/new.php?cat_id=$cat_id_now&cat_book_id=$cat_book_id_now&book_id=$sub_book_id'><center><button id=\"selectable\" class=\"btn btn-primary\">". $sub_book_ar_name ."<div style=\"color : transparent; display: inline-block;\">x</div></button></a></center><br>";
+            echo "<a href='?cat_id=$cat_id_now&cat_book_id=$cat_book_id_now&book_id=$sub_book_id'><center><button id=\"selectable\" class=\"btn btn-primary\">". $sub_book_ar_name ."<div style=\"color : transparent; display: inline-block;\">x</div></button></a></center><br>";
           }
 
 
@@ -298,7 +298,9 @@ if (isset( $_GET['book_id'] )) {
   </center>
   </div>
   <h1 class="page-header" align="right" >اضافه جلد للکتاب </h1>
-  <form action="add-book.php?book_id=$book_ID" method="POST">
+  <form action="add-book.php" method="POST">
+  <?php include 'hidden_input.php'; ?>
+
   <div class="input-group">
     <select class="form-control" name="sub_category_id">
 
@@ -375,9 +377,14 @@ if (isset( $_GET['book_id'] )) {
   </center>
   </div>
   <h1 class="page-header" align="right" >اضافه الکتاب  </h1>
-  <form action="add-subcategory.php?book_id=$book_ID" method="POST">
+  <form action="add-subcategory.php" method="POST">
+  <?php include 'hidden_input.php'; ?>
+
   <div class="input-group">
 
+  <input type="hidden"  name="book_id" value="<?php echo $book_ID; ?>">
+  <input type="hidden"  name="cat_id" value="<?php echo $cat_ID; ?>">
+  <input type="hidden"  name="sub_cat_id" value="<?php echo $sub_cat_ID; ?>">
 
     <span class="input-group-addon"><i class="fa fa-folder"></i></span>
     <input id="bookname" type="text" class="form-control" name="en_name" placeholder="Book Name ..... " style="text-align : left;">
@@ -447,7 +454,9 @@ if (isset( $_GET['book_id'] )) {
   </center>
   </div>
   <h1 class="page-header" align="right" >اضافه القسم  </h1>
-  <form action="add-category.php?cat_book_id=<?php echo $cat_book_id; ?>&cat_id=<?php echo $cat_id; ?>&book_id=<?php echo $book_ID; ?>" method="POST">
+  <form action="add-category.php" method="POST">
+  <?php include 'hidden_input.php'; ?>
+
   <div class="input-group">
 
     <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
@@ -477,7 +486,9 @@ if (isset( $_GET['book_id'] )) {
 </div>
 </center>
   <h1 class="page-header" align="right" >ازاله جلد الکتاب </h1>
-  <form action="delete-book.php?book_id=book_id=<?php echo $book_ID; ?>" method="POST">
+  <form action="delete-book.php" method="POST">
+  <?php include 'hidden_input.php'; ?>
+
   <div class="input-group">
     <input id="bookname" type="number" autofocus class="form-control" name="bookid" placeholder="..... رقم الکتاب" style="text-align : right;">
     <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
@@ -507,7 +518,8 @@ if (isset( $_GET['book_id'] )) {
 </div>
 </center>
   <h1 class="page-header" align="right" >ازاله القسم </h1>
-  <form action="delete-category.php?cat_book_id=<?php echo $cat_book_id; ?>&cat_id=<?php echo $cat_id; ?>&book_id=<?php echo $book_ID; ?>" method="POST">
+  <form action="delete-category.php" method="POST">
+  <?php include 'hidden_input.php'; ?>
   <div class="input-group">
     <input id="bookname" type="number" autofocus class="form-control" name="bookid" placeholder="..... رقم الکتاب" style="text-align : right;">
     <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
@@ -539,7 +551,10 @@ if (isset( $_GET['book_id'] )) {
 </div>
 </center>
   <h1 class="page-header" align="right" >ازاله الکتاب  </h1>
-  <form action="delete-subcategory.php?book_id=$book_ID" method="POST">
+  <form action="delete-subcategory.php" method="POST">
+  <form action="delete-book.php" method="POST">
+  <?php include 'hidden_input.php'; ?>
+
   <div class="input-group">
     <input id="bookname" type="number" autofocus class="form-control" name="bookid" placeholder="..... رقم الکتاب" style="text-align : right;">
     <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>

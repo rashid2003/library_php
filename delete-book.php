@@ -7,15 +7,16 @@ include 'inc.php';
     if ( isset($_POST['bookid'])){
       $bookid = $_POST['bookid'];
 
-
+      include 'form-vars.php';
+      $url ="new.php?cat_id=$cat_id&cat_book_id=$sub_cat_id&book_id=$book_id&success_delete=book";
+    
 
 
               $sql = "DELETE FROM books WHERE id = $bookid";
 
 
               if ($conn->query($sql) === TRUE) {
-                  echo "record Deleted successfully";
-                  echo "<script>window.location.href=\"new.php\";</script>";
+                header('Location: '.$url);
               } else {
                   echo "Error: " . $sql . "<br>" . $conn->error;
               }
