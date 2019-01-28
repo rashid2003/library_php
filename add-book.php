@@ -10,7 +10,9 @@ include 'inc.php';
         $en_name = $_POST['en_name'];
         if ( isset($_POST['sub_category_id'])){
           $sub_category_id = $_POST['sub_category_id'];
-
+          include 'form-vars.php';
+          $url ="new.php?cat_id=$cat_id&cat_book_id=$sub_cat_id&book_id=$book_id&success_added=book";
+        
 
                 $file = "files/". $_POST['file'] ."";
                 $userid="1";
@@ -21,7 +23,7 @@ include 'inc.php';
               VALUES ('$en_name', '$ar_name', '$sub_category_id', '$userid', '$file')";
 
               if ($conn->query($sql) === TRUE) {
-                  echo "New record created successfully";
+                header('Location: '.$url);
               } else {
                   echo "Error: " . $sql . "<br>" . $conn->error;
               }
