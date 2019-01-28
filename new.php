@@ -2,6 +2,12 @@
 include 'inc.php';
 
 if (isset( $_GET['book_id'] )) {
+  
+  $cat_book_id = $_GET['book_id'];
+  $sql_file = "SELECT * FROM books where id = $cat_book_id";
+  $result_file = $conn->query($sql_file);
+  $row_file = $result_file->fetch_assoc();
+  $file_now = $row_file["file"];
 $book_ID = $_GET['book_id'];
 }else{
   $book_ID= "0";
@@ -247,6 +253,7 @@ THE LISTS ARE STARTING FROM HERE DOWN OF HERER ALL 3 LISTS
 
 
 
+
             echo "<a href='?cat_id=$cat_id_now&cat_book_id=$cat_book_id_now&book_id=$sub_book_id'><center><button id=\"selectable\" class=\"btn btn-primary\">". $sub_book_ar_name ."<div style=\"color : transparent; display: inline-block;\">x</div></button></a></center><br>";
           }
 
@@ -269,7 +276,7 @@ THE LISTS ARE STARTING FROM HERE DOWN OF HERER ALL 3 LISTS
 if (isset( $_GET['book_id'] )) {
 ?>
 <div class="embed-responsive embed-responsive-16by9" style="border : 1px solid green" >
-<iframe src="" class="embed-responsive-item" allowfullscreen></iframe>
+<iframe src="<?php echo $file_now; ?>" class="embed-responsive-item" allowfullscreen></iframe>
 <h1 style="font-family : sans-serif;" >THIS WAS MY WORK THIS PART WILL COME SOON BY <i style="color : lightgreen;">RASHID OBAIDE </i>BACKEND STAFF<br> BOOK   <?php echo $book_ID; ?></h1>
 </div>
 <?php  } ?>
